@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /*Inverse One-to-many relationship with Role model(i.e One role can have multiple users)*/
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
 }
