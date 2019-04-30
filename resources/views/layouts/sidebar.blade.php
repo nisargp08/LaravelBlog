@@ -13,6 +13,9 @@
                 <li>
                     <a href="#">Dashboard</a>
                 </li>
+                <li>
+                        <a href="admin.users.index">Users</a>
+                    </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
