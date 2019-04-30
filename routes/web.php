@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 /*Admin Routes - Users*/
 Route::resource('/admin/users','AdminUserController');
+Route::get('/admin',function(){
+    return view('admin.index');
+});

@@ -10,19 +10,23 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--Css for admin sidepanel-->
+    <link href="{{ asset('css/adminSidebar.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                    <a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
+                        <span class="navbar-toggler-icon"></span>
+                    </a>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -72,9 +76,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
             @yield('content')
-        </main>
     </div>
 </body>
+<script src="{{ asset('js/script.js') }}"></script>
 </html>

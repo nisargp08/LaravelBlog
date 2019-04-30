@@ -13,3 +13,11 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.styles([
+    'resources/css/adminSidebar.css'
+],'public/css/adminSidebar.css');
+
+mix.scripts([
+    'resources/js/script.js'
+],'public/js/script.js');
