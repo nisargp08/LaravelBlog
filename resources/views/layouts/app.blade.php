@@ -19,10 +19,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!--Css for admin sidepanel-->
     <link href="{{ asset('css/adminSidebar.css') }}" rel="stylesheet">
+    <!-- Font Awesome icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                     <a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
                         <span class="navbar-toggler-icon"></span>

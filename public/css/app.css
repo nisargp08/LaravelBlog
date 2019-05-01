@@ -10662,8 +10662,20 @@ a.text-dark:focus {
   }
 }
 
+/*
 .navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+*/
+
+/*Green and red color on users - AdminPanel*/
+
+.green-dot .fa-circle {
+  color: green;
+}
+
+.red-dot .fa-circle {
+  color: red;
 }
 

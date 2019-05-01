@@ -17,9 +17,7 @@ class AdminUserController extends Controller
     {
         //Getting all the users data
         $users = User::all();
-        //Getting all the column name for the table user
-        $user_fields = $this->filterTableColumns('users');
-        return view('admin.users.index',compact('users','user_fields'));
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -86,15 +84,5 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
-    }
-    /*Function fetches all the column names for the passed table filters them my removing '_' and capitalizing each word*/
-    public function filterTableColumns($table){
-        $filteredTable = Schema::getColumnListing($table);
-        //Capitalizing everyword of the array
-        $filteredTable = array_map('ucfirst',$filteredTable);
-        //Replacing '_' in the column name with ' ' in the array
-        $filteredTable = str_replace(array('_'),array(' '),$filteredTable);
-
-        return $filteredTable;
     }
 }

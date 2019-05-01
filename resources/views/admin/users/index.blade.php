@@ -1,12 +1,12 @@
 @extends('layouts.sidebar')
 @section('pageContent')
 <h2>Users</h2>
-<table class="table">
+<table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">RoleId</th>
-            <th scope="col">IsActive</th>
+            <th scope="col">Role</th>
+            <th scope="col">Active</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">EmailVerifiedAt</th>
@@ -18,13 +18,31 @@
             @foreach($users as $user)
             <tr>
                 <th scope="row">{{$user->id}}</th>    
-                <td>{{$user->role_id}}</td>
-                <td>{{$user->is_active}}</td>
+                <td>{{$user->role['name']}}</td>
+                @if($user->is_active == 1)
+                <td class="green-dot"><i class="fas fa-circle"></i></td>
+                @else
+                <td class="red-dot"><i class="fas fa-circle"></i></td>
+                @endif
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                @if ($user->email_verified_at == null)
                 <td>{{$user->email_verified_at}}</td>
+                @else
+                <td>{{$user->email_verified_at->diffForHumans()}}</td>
+                @endif
+
+                @if ($user->created_at == null)
                 <td>{{$user->created_at}}</td>
-                <td>{{$user->updated_at}}</td> 
+                @else
+                <td>{{$user->created_at->diffForHumans()}}</td>
+                @endif
+
+                @if ($user->updated_at == null)
+                <td>{{$user->updated_at}}</td>
+                @else
+                <td>{{$user->updated_at->diffForHumans()}}</td>
+                @endif
             </tr>
             @endforeach
         </tbody>
