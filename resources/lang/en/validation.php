@@ -132,6 +132,11 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'custom' => [
+        'photo_id' => [
+            'image' => 'Invalid photo extenstion.Please use valid image file',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

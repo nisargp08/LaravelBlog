@@ -25,11 +25,13 @@ class UsersRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:30',
+            'email' => 'required|email|unique:users,email',
+            //'email' => 'required|email|unique:users,email'.$this->id, (for edit profile so it ignores curreent email)
             'role_id' => 'required|integer',
             'is_active' => 'required|boolean',
-            'password' => 'required|min:6|max:30'
+            'password' => 'required|min:6|max:30',
+            'photo_id' => 'image|max:2048'
         ];
     }
 }
