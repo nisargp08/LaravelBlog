@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id', 'is_active', 'photo_id',
     ];
 
     /**
@@ -39,5 +39,9 @@ class User extends Authenticatable
     /*Inverse One-to-many relationship with Role model(i.e One role can have multiple users)*/
     public function role(){
         return $this->belongsTo('App\Role');
+    }
+    /*Inverse One-to-many relationship with Photo model(i.e One Photo can be used by multiple users)*/
+    public function photo(){
+        return $this->belongsTo('App\Photo');
     }
 }

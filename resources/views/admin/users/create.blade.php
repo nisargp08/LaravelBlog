@@ -2,7 +2,7 @@
 @section('pageContent')
 <h2>Create Users</h2>
 <hr>
-{!! Form::open(['method' => 'POST','action'=> 'AdminUserController@store']) !!}
+{!! Form::open(['method' => 'POST','action'=> 'AdminUserController@store','files'=> true]) !!}
 
     <div class="form-group">
         <b>{!! Form::label('name','Name:') !!}</b>
@@ -23,6 +23,12 @@
     <div class="form-group">
             <b>{!! Form::label('password','Password:') !!}</b>
             {!! Form::password('password',['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group upload-btn-wrapper">
+            <b>{!! Form::label('photo_id','Profile Image:') !!}</b>
+            <button class="fileBtn">Upload a file</button>
+            {!! Form::file('photo_id',array('onchange' => 'readURL(this)'),['class' => 'profile-img']) !!}<br><br>
+            <img src="" id="profile-img-tag" class="img-fluid rounded imgDimension"/>
     </div>
     <div class="form-group">
         {!! Form::submit('Create User',['class'=>'btn btn-success']) !!}
