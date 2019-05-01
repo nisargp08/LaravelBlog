@@ -6,7 +6,7 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Role</th>
-            <th scope="col">Active</th>
+            <th scope="col">Status</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">EmailVerifiedAt</th>

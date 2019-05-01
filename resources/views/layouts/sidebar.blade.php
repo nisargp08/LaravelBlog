@@ -14,8 +14,8 @@
                     <a href="#">Dashboard</a>
                 </li>
                 <li>
-                        <a href="admin.users.index">Users</a>
-                    </li>
+                    <a href="{{route('users.index')}}">Users</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -23,9 +23,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                    <div class="row">
-                        @yield('pageContent')
-                    </div>
+                @yield('pageContent')
             </div>
         </div>
     </div>
