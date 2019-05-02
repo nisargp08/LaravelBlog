@@ -9,7 +9,7 @@ use App\Photo;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
 use Illuminate\Support\Facades\Schema;
-
+use Barryvdh\Debugbar\Facade as Debugbar;
 class AdminUserController extends Controller
 {
     /**
@@ -45,15 +45,20 @@ class AdminUserController extends Controller
     public function store(UsersRequest $request)
     {
         //
-       $input = $request->all();
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        }
+        else{
+            $input = $request->all();
+            /*Encrypting password*/
+            $input['password'] = bcrypt($request->password);
+        }
        if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
             $file->move('images',$name);
             $photo = Photo::create(['file'=> $name]);
             $input['photo_id'] = $photo->id;
        }
-       /*Encrypting password*/
-       $input['password'] = bcrypt($request->password);
        User::create($input);
        return redirect()->route('users.index');
         //return $request->all();
@@ -94,14 +99,20 @@ class AdminUserController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         //
-        $userInput = $request->all();
+        if(trim($request->password) == ''){
+            $userInput = $request->except('password');
+        }
+        else{
+            $userInput = $request->all();
+            /*Encrypting password*/
+            $userInput['password'] = bcrypt($request->password);
+        }
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
             $file->move('images',$name);
             $photo = Photo::create(['file'=> $name]);
             $userInput['photo_id'] = $photo->id;
         }
-        $userInput['password'] = bcrypt($request->password);
         $user = User::findOrFail($id);
         $user->update($userInput);
         return redirect()->route('users.index');
