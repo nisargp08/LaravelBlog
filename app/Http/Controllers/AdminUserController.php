@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use App\Photo;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersEditRequest;
 use Illuminate\Support\Facades\Schema;
 
 class AdminUserController extends Controller
@@ -78,6 +79,9 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $role = Role::pluck('name','id')->all();
+        return view('admin.users.edit',compact('user','role'));
     }
 
     /**
@@ -87,9 +91,20 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
         //
+        $userInput = $request->all();
+        if($file = $request->file('photo_id')){
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file'=> $name]);
+            $userInput['photo_id'] = $photo->id;
+        }
+        $userInput['password'] = bcrypt($request->password);
+        $user = User::findOrFail($id);
+        $user->update($userInput);
+        return redirect()->route('users.index');
     }
 
     /**

@@ -10707,5 +10707,30 @@ a.text-dark:focus {
 
 .imgDimension {
   width: 200px;
+  padding: 20px;
+}
+
+.indexImgDimension {
+  width: 120px;
+}
+
+/*Admin panel operations padding*/
+
+a.icon-pad {
+  padding: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.icon-pad:hover,
+a.icon-pad:focus {
+  color: grey;
+  transition: all 0.5s ease;
+}
+
+/*Headertag for the page*/
+
+.headingTag {
+  display: inline-block;
 }
 
