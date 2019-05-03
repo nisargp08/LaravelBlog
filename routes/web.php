@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /*Authentication Routes*/
 Auth::routes();
 /*Application Routes*/
@@ -17,8 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', 'HomeController@index')->name('home');
-/*Admin Routes - Users*/
-Route::resource('/admin/users','AdminUserController');
-Route::get('/admin',function(){
-    return view('admin.index');
+
+/*Grouping all the admin routes under 'Admin' middleware*/
+Route::group(['middleware' => 'Admin'],function(){
+    /*Admin Routes - Users*/
+    Route::get('/admin',function(){
+        return view('admin.index');
+    });
+    Route::resource('/admin/users','AdminUserController');
 });

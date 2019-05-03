@@ -10710,6 +10710,16 @@ a.text-dark:focus {
   padding: 20px;
 }
 
+.imgAlignment {
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px;
+}
+
+.textAlignment {
+  text-align: center;
+}
+
 .indexImgDimension {
   width: 120px;
 }
