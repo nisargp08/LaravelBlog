@@ -2,6 +2,8 @@
 @section('pageContent')
 <h2>Edit User</h2>
 <hr>
+<button type="button" onclick="window.location='{{ URL::route('users.index') }}'" class="btn btn-dark">Go Back</button>
+<hr>
 <div class="row">
     <div class="col-md-2">
         <img src="{{$user->photo ? $user->photo->file : '/images/placeholder.png'}}" id="profile-img-tag" class="img-fluid rounded"/>

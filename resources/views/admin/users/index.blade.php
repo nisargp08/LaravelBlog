@@ -1,5 +1,30 @@
 @extends('layouts.sidebar')
 @section('pageContent')
+
+  @if(Session::has('user_deleted'))
+  <div class="alert alert-dismissible alert-success fade show">
+    {{ session('user_deleted')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
+  @if(Session::has('user_updated'))
+  <div class="alert alert-dismissible alert-success fade show">
+    {{ session('user_updated')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
+  @if(Session::has('user_created'))
+  <div class="alert alert-dismissible alert-success fade show">
+    {{ session('user_created')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
 <h2 class="headingTag">Users</h2>
 <table class="table table-striped table-hover">
         <thead>
@@ -77,7 +102,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                       {!! Form::open(['method' => 'DELETE','action'=> ['AdminUserController@destroy',$user->id]]) !!}
-                        {!! Form::submit('Confirm', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::submit('Delete User', ['class' => 'btn btn-danger']) !!}
                       {!! Form::close() !!}
                     </div>
                   </div>

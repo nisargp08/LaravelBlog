@@ -10,6 +10,8 @@ use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
 use Illuminate\Support\Facades\Schema;
 use Barryvdh\Debugbar\Facade as Debugbar;
+use Illuminate\Support\Facades\Session;
+
 class AdminUserController extends Controller
 {
     /**
@@ -60,6 +62,7 @@ class AdminUserController extends Controller
             $input['photo_id'] = $photo->id;
        }
        User::create($input);
+       Session::flash('user_created','User '.$input['name'].' has been successfully created.');
        return redirect()->route('users.index');
         //return $request->all();
     }
@@ -115,6 +118,7 @@ class AdminUserController extends Controller
         }
         $user = User::findOrFail($id);
         $user->update($userInput);
+        Session::flash('user_updated','User '.$user->name.' has been successfully updated.');
         return redirect()->route('users.index');
     }
 
@@ -126,8 +130,9 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        $userToBeDelete = User::find($id);
-        $userToBeDelete->delete();
+        $userToDelete = User::findOrFail($id);
+        Session::flash('user_deleted','User '.$userToDelete->name.' has been successfully deleted.');
+        $userToDelete->delete();
         return redirect()->route('users.index');
     }
 }
