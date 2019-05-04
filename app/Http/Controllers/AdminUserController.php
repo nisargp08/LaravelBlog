@@ -102,21 +102,25 @@ class AdminUserController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         //
+        $user = User::findOrFail($id);
         if(trim($request->password) == ''){
             $userInput = $request->except('password');
         }
         else{
             $userInput = $request->all();
-            /*Encrypting password*/
+            /*Encrypting the data*/
             $userInput['password'] = bcrypt($request->password);
         }
         if($file = $request->file('photo_id')){
+            /*Deleting Previous Image - Condition : If user has a previously uploaded photo*/
+            if(!is_null($user['photo_id']))
+            unlink(public_path().$user->photo->file);
+            /*Saving the new uploaded image to the database*/
             $name = time() . $file->getClientOriginalName();
             $file->move('images',$name);
             $photo = Photo::create(['file'=> $name]);
             $userInput['photo_id'] = $photo->id;
         }
-        $user = User::findOrFail($id);
         $user->update($userInput);
         Session::flash('user_updated','User '.$user->name.' has been successfully updated.');
         return redirect()->route('users.index');
@@ -131,6 +135,10 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         $userToDelete = User::findOrFail($id);
+        /*Will only delete the image if user actually uploaded the photo : Using this will eliminate the need to store the placeholder image in the database to avoid 'Trying to get property of non-object' error*/
+        if(!is_null($userToDelete['photo_id']))
+            unlink(public_path().$userToDelete->photo->file);
+
         Session::flash('user_deleted','User '.$userToDelete->name.' has been successfully deleted.');
         $userToDelete->delete();
         return redirect()->route('users.index');
