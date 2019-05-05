@@ -44,6 +44,10 @@ class User extends Authenticatable
     public function photo(){
         return $this->belongsTo('App\Photo');
     }
+    /*Many-to-many relationship with the Post model(i.e One User can have multiple post)*/
+    public function post(){
+        return $this->hasMany('App\Post');
+    }
     /*This function will return the role of the user*/
     public function checkRole(){
         $roleName = $this->role->name;

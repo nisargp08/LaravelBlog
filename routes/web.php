@@ -21,9 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*Grouping all the admin routes under 'Admin' middleware*/
 Route::group(['middleware' => 'Admin'],function(){
-    /*Admin Routes - Users*/
+    /*Dashboard Route*/
     Route::get('/admin',function(){
         return view('admin.index');
     });
+    /*Routes for user management on admin panel*/
     Route::resource('/admin/users','AdminUserController');
+    /*Rotues for posts management on admin panel*/
+    Route::resource('/admin/posts','AdminPostsController');
 });

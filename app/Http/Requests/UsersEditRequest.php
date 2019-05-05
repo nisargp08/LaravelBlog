@@ -34,4 +34,16 @@ class UsersEditRequest extends FormRequest
             'photo_id' => 'image|max:2048'
         ];
     }
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return[
+            'photo_id.image' => 'Invalid file extenstion(Select jpg,jpeg,png,...)',
+            'photo_id.max:2048' => 'Image size exceeded maximum upload limit(2MB)',
+        ];
+    }
 }

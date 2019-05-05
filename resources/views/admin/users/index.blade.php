@@ -26,7 +26,7 @@
   </div>
   @endif
   <h2 class="headingTag">Users - </h2>
-  <button role="button" class="btn btn-dark createUsersButton" onclick="window.location='{{ route('users.create') }}'">Add Users</button>
+  <button role="button" class="btn btn-dark addButtonAdminPanel" onclick="window.location='{{ route('users.create') }}'">Add Users</button>
   <table class="table table-striped table-hover">
           <thead>
             <tr>

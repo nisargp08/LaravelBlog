@@ -11,10 +11,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="/admin">Dashboard</a>
                 </li>
                 <li>
                     <a href="{{route('users.index')}}">Users</a>
+                </li>
+                <li>
+                    <a href="{{route('posts.index')}}">Posts</a>
                 </li>
             </ul>
         </div>

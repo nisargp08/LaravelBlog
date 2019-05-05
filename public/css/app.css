@@ -10683,6 +10683,7 @@ a.text-dark:focus {
 
 .upload-btn-wrapper {
   position: relative;
+  overflow: hidden;
   display: inline-block;
 }
 
@@ -10743,7 +10744,28 @@ a.icon-pad:focus {
   display: inline-block;
 }
 
-.createUsersButton {
+.addButtonAdminPanel {
   margin-bottom: 10px;
+}
+
+/*No data to display(posts) message*/
+
+.perfectlyCenteredMessage {
+  position: relative;
+  height: 10em;
+}
+
+.perfectlyCenteredMessage p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.NoDataMessage {
+  margin-top: 20px;
 }
 

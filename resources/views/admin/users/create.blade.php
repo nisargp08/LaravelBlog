@@ -29,7 +29,7 @@
     <div class="form-group upload-btn-wrapper">
             <b>{!! Form::label('photo_id','Profile Image:') !!}</b>
             <button class="fileBtn">Upload a file</button>
-            {!! Form::file('photo_id',array('onchange' => 'readURL(this)'),['class' => 'profile-img']) !!}<br><br>
+            {!! Form::file('photo_id',array('onchange' => 'readURL(this)')) !!}<br><br>
             <img src="" id="profile-img-tag" class="img-fluid rounded imgDimension"/>
     </div>
     <div class="form-group">
