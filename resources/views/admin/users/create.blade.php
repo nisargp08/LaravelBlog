@@ -2,6 +2,8 @@
 @section('pageContent')
 <h2>Create Users</h2>
 <hr>
+<button role="button" class="btn btn-dark" onclick="window.location='{{ URL::route('users.index')}}'">Go Back</button>
+<hr>
 {!! Form::open(['method' => 'POST','action'=> 'AdminUserController@store','files'=> true]) !!}
 
     <div class="form-group">

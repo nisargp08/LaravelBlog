@@ -26,7 +26,7 @@
 /*Input type file of forms*/
 .upload-btn-wrapper {
     position: relative;
-    overflow: hidden;
+    //overflow: auto;
     display: inline-block;
   }
   
@@ -76,4 +76,7 @@ a.icon-pad:hover,a.icon-pad:focus{
 /*Headertag for the page*/
 .headingTag{
     display: inline-block;
+}
+.createUsersButton{
+    margin-bottom: 10px;
 }

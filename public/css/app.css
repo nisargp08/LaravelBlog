@@ -10683,7 +10683,6 @@ a.text-dark:focus {
 
 .upload-btn-wrapper {
   position: relative;
-  overflow: hidden;
   display: inline-block;
 }
 
@@ -10742,5 +10741,9 @@ a.icon-pad:focus {
 
 .headingTag {
   display: inline-block;
+}
+
+.createUsersButton {
+  margin-bottom: 10px;
 }
 
