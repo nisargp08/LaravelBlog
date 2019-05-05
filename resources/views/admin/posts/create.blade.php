@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('category_id','Post Category : ') !!}
-        {!! Form::select('category_id',array('' => 'Choose a category'),null,['class' => 'form-control']) !!}
+        {!! Form::select('category_id',array('' => 'Choose a category')+$categories,null,['class' => 'form-control']) !!}
     </div>
     <div class="form-group upload-btn-wrapper">
             <b>{!! Form::label('photo_id','Post Image:') !!}</b>

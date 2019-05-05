@@ -27,8 +27,8 @@ class PostRequest extends FormRequest
             //
             'title' => 'required',
             'body' => 'required',
-            //'category_id' => 'required',
-            //'photo_id' => 'required',
+            'category_id' => 'required',
+            'photo_id' => 'required',
         ];
     }
     /**

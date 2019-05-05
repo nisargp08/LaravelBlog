@@ -19,8 +19,8 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
     /* relationship with user Category(i.e One post can only have one user meaning author)*/
-    /*public function category(){
-        return $this->belongsToMany('App\Category');
+    public function category(){
+        return $this->belongsTo('App\Category');
     }
     /*Inverse one-to-one relationship with user photo(i.e One post can only have one user meaning author)*/
     public function photo(){

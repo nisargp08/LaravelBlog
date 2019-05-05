@@ -30,10 +30,10 @@
                     <tr>
                         <th scope="row">{{$post->id}}</th>  
                         <td>{{$post->title}}</td>
-                        <td>{{$post->body}}</td>  
+                        <td>{{str_limit($post->body,70)}}</td>  
                         <td><img alt="" src="{{$post->photo ? $post->photo->file : '/images/placeholder.png'}}" class="indexImgDimension"></td>
                         <td>{{$post->user->name}}</td>
-                        <td></td>
+                        <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
                         @if ($post->created_at == null)
                         <td>{{$post->created_at}}</td>
                         @else
