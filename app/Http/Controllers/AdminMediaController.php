@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Photo;
 class AdminMediaController extends Controller
 {
@@ -36,15 +37,8 @@ class AdminMediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validateData = $this->validate(
-            $request,[
-                'name' => 'required',
-            ],[
-                'name.required' => 'Image is required',
-                //'name.image' => 'Invalid image extension',
-            ]
-        );
+
+        if($file = $request->file('file')){
              /*Fetching filename and appending current time to it*/
              $name = time() . $file->getClientOriginalName();
              /*Moving the file to images folder*/
@@ -52,8 +46,9 @@ class AdminMediaController extends Controller
              /*Adding photo to the database*/
              $photo = Photo::create(['file' => $name]);
              Session::flash('photo_created',"Image has been successfully created");
-            return redirect()->route('media.index');
-        return redirect()->route('media.index');
+             return redirect()->route('media.index');
+        }
+        //return redirect()->route('media.index');
     }
 
     /**
@@ -99,5 +94,18 @@ class AdminMediaController extends Controller
     public function destroy($id)
     {
         //
+        $photoToBeDeleted = Photo::findOrFail($id);
+        if($photoToBeDeleted != null){
+            /*Checking if file exists in the folder*/
+            if(\file_exists(public_path().$photoToBeDeleted->file)){
+                /*Deleting image from the image folder*/
+                unlink(public_path().$photoToBeDeleted->file);
+                /*Deleting image from the folder*/
+                $photoToBeDeleted->delete();
+                /*Session Message*/
+                Session::flash('photo_deleted','Image has been successfully deleted');
+            }
+        }
+        return redirect()->route('media.index');
     }
 }

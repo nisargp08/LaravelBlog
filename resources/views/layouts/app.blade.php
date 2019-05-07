@@ -21,6 +21,7 @@
     <link href="{{ asset('css/adminSidebar.css') }}" rel="stylesheet">
     <!-- Font Awesome icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    @yield('header-styles')
 </head>
 <body>
     <div id="app">
@@ -82,5 +83,6 @@
             @yield('content')
     </div>
 </body>
+@yield('footer-scripts')
 <script src="{{ asset('js/script.js') }}"></script>
 </html>

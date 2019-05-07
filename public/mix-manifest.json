@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/adminSidebar.css": "/css/adminSidebar.css",
-    "/js/script.js": "/js/script.js"
+    "/css/dropzone.css": "/css/dropzone.css",
+    "/js/script.js": "/js/script.js",
+    "/js/dropzone.js": "/js/dropzone.js"
 }

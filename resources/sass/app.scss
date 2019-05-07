@@ -29,7 +29,7 @@
     overflow: hidden;
     display: inline-block;
   }
-  
+
   .fileBtn {
     border: 2px solid gray;
     color: gray;
@@ -39,7 +39,7 @@
     font-size: 12px;
     font-weight: bold;
   }
-  
+
   .upload-btn-wrapper input[type=file] {
     font-size: 100px;
     position: absolute;
@@ -95,4 +95,9 @@ a.icon-pad:hover,a.icon-pad:focus{
 }
 .NoDataMessage{
     margin-top: 20px;
+}
+/*Media Upload admin panel dropzone*/
+.dropzone{
+    border-radius: 10px;
+    border: 2px dashed grey!important;
 }

@@ -1,5 +1,8 @@
 @extends('layouts.app')
-@section('content')    
+@section('header-styles')
+    @yield('styles')
+@endsection
+@section('content')
 <div id="wrapper">
 
         <!-- Sidebar -->
@@ -40,4 +43,7 @@
 
 </div>
 <!-- /#wrapper -->
+@endsection
+@section('footer-scripts')
+    @yield('scripts')
 @endsection

@@ -10769,3 +10769,10 @@ a.icon-pad:focus {
   margin-top: 20px;
 }
 
+/*Media Upload admin panel dropzone*/
+
+.dropzone {
+  border-radius: 10px;
+  border: 2px dashed grey !important;
+}
+
