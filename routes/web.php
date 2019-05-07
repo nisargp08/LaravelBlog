@@ -33,4 +33,9 @@ Route::group(['middleware' => 'Admin'],function(){
     Route::resource('/admin/categories','AdminCategoriesController');
     /*Routes for media management on admin panel*/
     Route::resource('/admin/media','AdminMediaController');
+    /*Routes for comments management on admin panel*/
+    Route::resource('/admin/comments','PostCommentsController');
+    /*Routes for comments replies management on admin panel*/
+    Route::resource('/admin/comments/replies','CommentRepliesController');
+
 });
