@@ -19,6 +19,9 @@
                 <li>
                     <a href="{{route('posts.index')}}">Posts</a>
                 </li>
+                <li>
+                        <a href="{{route('categories.index')}}">Categories</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

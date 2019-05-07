@@ -29,4 +29,6 @@ Route::group(['middleware' => 'Admin'],function(){
     Route::resource('/admin/users','AdminUserController');
     /*Rotues for posts management on admin panel*/
     Route::resource('/admin/posts','AdminPostsController');
+    /*Routes for categories management on admin panel*/
+    Route::resource('/admin/categories','AdminCategoriesController');
 });
