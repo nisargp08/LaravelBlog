@@ -20,7 +20,10 @@
                     <a href="{{route('posts.index')}}">Posts</a>
                 </li>
                 <li>
-                        <a href="{{route('categories.index')}}">Categories</a>
+                    <a href="{{route('categories.index')}}">Categories</a>
+                </li>
+                <li>
+                    <a href="{{route('media.index')}}">Media</a>
                 </li>
             </ul>
         </div>
