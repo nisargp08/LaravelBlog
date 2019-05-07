@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Post;
@@ -84,7 +85,9 @@ class AdminPostsController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.posts.edit');
+        $post = Post::find($id);
+        $categories = Category::pluck('name','id')->all();
+        return view('admin.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -94,9 +97,27 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
         //
+        $post = Post::findOrFail($id);
+        $postData = $request->all();
+        if($file = $request->file('photo_id')){
+            if(!is_null($post['photo_id'])){
+                /*Deleting image from the 'images' folder*/
+                unlink(public_path().$post->photo->file);
+                /*Deleting the photo from the photo table*/
+                $post->photo->delete();
+            }
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file' => $name]);
+            $postData['photo_id'] = $photo->id;
+        }
+        //Auth::user()->post()->whereId($id)->first()->update($postData);
+        $post->update($postData);
+        Session::flash('post_updated','Post "'.$post->title.'" has been successfully updated');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -108,5 +129,15 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+        $postToBeDeleted = Post::findOrFail($id);
+        if(!is_null($postToBeDeleted['photo_id'])){
+            /*Deleting image from the 'images' folder*/
+            unlink(public_path().$postToBeDeleted->photo->file);
+            /*Deleting the photo from the photo table*/
+            $postToBeDeleted->photo->delete();
+        }
+        $postToBeDeleted->delete();
+        Session::flash('post_deleted','Post "'.$postToBeDeleted->title.'" has been successfully deleted.');
+        return redirect()->route('posts.index');
     }
 }

@@ -115,8 +115,12 @@ class AdminUserController extends Controller
         }
         if($file = $request->file('photo_id')){
             /*Deleting Previous Image - Condition : If user has a previously uploaded photo*/
-            if(!is_null($user['photo_id']))
-            unlink(public_path().$user->photo->file);
+            if(!is_null($user['photo_id'])){
+                /*Deleting image from the 'images' folder*/
+                unlink(public_path().$user->photo->file);
+                /*Deleting image from the photos table*/
+                $userInput->photo->delete();
+            }
             /*Saving the new uploaded image to the database*/
             $name = time() . $file->getClientOriginalName();
             $file->move('images',$name);
@@ -124,7 +128,7 @@ class AdminUserController extends Controller
             $userInput['photo_id'] = $photo->id;
         }
         $user->update($userInput);
-        Session::flash('user_updated','User '.$user->name.' has been successfully updated.');
+        Session::flash('user_updated','User "'.$user->name.'" has been successfully updated.');
         return redirect()->route('users.index');
     }
 
@@ -138,10 +142,13 @@ class AdminUserController extends Controller
     {
         $userToDelete = User::findOrFail($id);
         /*Will only delete the image if user actually uploaded the photo : Using this will eliminate the need to store the placeholder image in the database to avoid 'Trying to get property of non-object' error*/
-        if(!is_null($userToDelete['photo_id']))
+        if(!is_null($userToDelete['photo_id'])){
+            /*Deleting image from the 'images' folder*/
             unlink(public_path().$userToDelete->photo->file);
-
-        Session::flash('user_deleted','User '.$userToDelete->name.' has been successfully deleted.');
+            /*Deleting image from the photos table*/
+            $userToDelete->photo->delete();
+        }
+        Session::flash('user_deleted','User "'.$userToDelete->name.'" has been successfully deleted.');
         $userToDelete->delete();
         return redirect()->route('users.index');
     }
