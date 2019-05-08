@@ -11,9 +11,9 @@
         @foreach ($posts as $post)
         <a class="blog-redirection-to-single" href="{{ route('blogposts.show',$post->id) }}">
             <div class="blog-card">
-                <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Card image cap">
+                <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Photo unavailable">
                 <div class="card-body">
-                    <div class="card-text card-text-font">{{ $post->title }}</div>
+                    <div class="card-text card-text-font">{{ str_limit($post->title,70) }}</div>
                 </div><hr class="blog-hr">
                 <div class="card-date">{{ $post->created_at ? $post->created_at->toFormattedDateString() : 'Date Unavailable' }}</div>
                 <div class="card-author">By {{ $post->user_id ? $post->user->name : 'Anonymous' }}</div>

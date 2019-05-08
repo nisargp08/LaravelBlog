@@ -143,10 +143,12 @@ class AdminUserController extends Controller
         $userToDelete = User::findOrFail($id);
         /*Will only delete the image if user actually uploaded the photo : Using this will eliminate the need to store the placeholder image in the database to avoid 'Trying to get property of non-object' error*/
         if(!is_null($userToDelete['photo_id'])){
-            /*Deleting image from the 'images' folder*/
-            unlink(public_path().$userToDelete->photo->file);
-            /*Deleting image from the photos table*/
-            $userToDelete->photo->delete();
+            if(\file_exists(public_path().$userToDelete->photo->file)){
+                /*Deleting image from the 'images' folder*/
+                unlink(public_path().$userToDelete->photo->file);
+                /*Deleting image from the photos table*/
+                $userToDelete->photo->delete();
+            }
         }
         Session::flash('user_deleted','User "'.$userToDelete->name.'" has been successfully deleted.');
         $userToDelete->delete();

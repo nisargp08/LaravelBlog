@@ -131,10 +131,12 @@ class AdminPostsController extends Controller
         //
         $postToBeDeleted = Post::findOrFail($id);
         if(!is_null($postToBeDeleted['photo_id'])){
+            if(\file_exists(public_path().$postToBeDeleted->photo->file)){
             /*Deleting image from the 'images' folder*/
             unlink(public_path().$postToBeDeleted->photo->file);
             /*Deleting the photo from the photo table*/
             $postToBeDeleted->photo->delete();
+            }
         }
         $postToBeDeleted->delete();
         Session::flash('post_deleted','Post "'.$postToBeDeleted->title.'" has been successfully deleted.');
