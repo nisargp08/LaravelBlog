@@ -137,7 +137,7 @@ a.icon-pad:hover,a.icon-pad:focus{
 /*Single blog display css ends*/
 
 /*All blog posts display*/
-.card-row {
+.blog-card-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -146,7 +146,7 @@ a.icon-pad:hover,a.icon-pad:focus{
     width: 100%;
     height: 500px;
 }
-.card {
+.blog-card {
     position: relative;
     background-color: #FFFFFF;
     height: 370px;
@@ -157,7 +157,7 @@ a.icon-pad:hover,a.icon-pad:focus{
     border-radius: 10px;
     transition: height 0.3s, box-shadow 0.3s;
 }
-.card:hover {
+.blog-card:hover {
     height: 390px;
     box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
 }

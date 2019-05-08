@@ -45,7 +45,7 @@
           <tbody>
               @foreach($users as $key => $user)
               <tr>
-                  <th scope="row">{{$user->id}}</th>    
+                  <th scope="row">{{$user->id}}</th>
                   <td>{{$user->role['name']}}</td>
                   @if($user->is_active == 1)
                   <td class="green-dot"><i class="fas fa-circle"></i></td>

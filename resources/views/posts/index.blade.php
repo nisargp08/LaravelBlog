@@ -7,10 +7,10 @@
         <hr>
     </div>
     @if(count($posts) > 0)
-    <div class="card-row">
+    <div class="blog-card-row">
         @foreach ($posts as $post)
         <a class="blog-redirection-to-single" href="{{ route('blogposts.show',$post->id) }}">
-            <div class="card">
+            <div class="blog-card">
                 <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Card image cap">
                 <div class="card-body">
                     <div class="card-text card-text-font">{{ $post->title }}</div>
