@@ -60,7 +60,7 @@
                 <tbody>
                     @foreach($categories as $key => $category)
                         <tr>
-                            <th scope="row">{{$category->id}}</th>  
+                            <th scope="row">{{$category->id}}</th>
                             <td>{{$category->name}}</td>
                             @if ($category->created_at == null)
                             <td>{{$category->created_at}}</td>
