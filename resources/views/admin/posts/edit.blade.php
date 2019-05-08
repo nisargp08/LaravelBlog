@@ -30,7 +30,7 @@
                 <img src="" id="profile-img-tag" class="img-fluid rounded imgDimension"/>
         </div>
             <div class="form-group">
-                {!! Form::submit('Update User',['class'=>'btn btn-success']) !!}
+                {!! Form::submit('Update Post',['class'=>'btn btn-success']) !!}
             </div>
         {!! Form::close() !!}
     </div>

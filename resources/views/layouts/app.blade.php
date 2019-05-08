@@ -80,7 +80,8 @@
                 </div>
             </div>
         </nav>
-            @yield('content')
+            @yield('content')           
+            @yield('responses')
     </div>
 </body>
 @yield('footer-scripts')

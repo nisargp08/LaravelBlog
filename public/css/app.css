@@ -10776,3 +10776,54 @@ a.icon-pad:focus {
   border: 2px dashed grey !important;
 }
 
+/*Single blog display css*/
+
+/*Author photo on the blog show page - single blog*/
+
+.post-author-photo {
+  width: 80px;
+}
+
+/*Margin between blog title and author details*/
+
+.blog-margin {
+  margin-top: 20px;
+}
+
+/*For post authorname and post created date*/
+
+.grid-row {
+  display: grid;
+}
+
+.blogimage-margin {
+  margin: 10px 0px 20px 0px;
+}
+
+.blog-content p {
+  font-size: 1.2em;
+}
+
+.tag {
+  background-color: beige;
+  /* Set the background color */
+  border-radius: 3px;
+  /* Add some roundness */
+  border: 1px #CCF solid;
+  /* Add a border */
+  padding: 2px 5px;
+  display: inline;
+}
+
+.tag:hover {
+  background-color: bisque;
+}
+
+/*Comment section*/
+
+.responses {
+  background-color: #f0f0f0;
+}
+
+/*Single blog display css ends*/
+

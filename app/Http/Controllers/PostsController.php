@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class PostCommentsController extends Controller
+use App\Post;
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class PostCommentsController extends Controller
     public function index()
     {
         //
-        return view('admin.comments.index');
     }
 
     /**
@@ -47,6 +46,8 @@ class PostCommentsController extends Controller
     public function show($id)
     {
         //
+        $post = Post::findOrFail($id);
+        return view('posts.show',compact('post'));
     }
 
     /**

@@ -28,6 +28,9 @@
                 <li>
                     <a href="{{route('media.index')}}">Media</a>
                 </li>
+                <li>
+                    <a href="{{route('comments.index')}}">Comments</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

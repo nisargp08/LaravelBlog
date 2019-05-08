@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('/blogposts','PostsController');
 /*Grouping all the admin routes under 'Admin' middleware*/
 Route::group(['middleware' => 'Admin'],function(){
     /*Dashboard Route*/

@@ -33,7 +33,7 @@
     <div class="col">
         {!! Form::open(['method' => 'POST','action'=>'AdminMediaController@store','class'=>'dropzone','files' => 'true']) !!}
             <div class="dz-message" data-dz-message>
-                <span><h4>Drop files here to upload or Click here to browse !!</h4></span>
+                <span><h4>Drop files here to upload or Click here to browse !!</h4><b>Maximum upload allowed(2MB)</b></span>
             </div>
         {!! Form::close() !!}
     </div>

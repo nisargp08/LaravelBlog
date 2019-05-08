@@ -31,9 +31,9 @@
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Image</th>
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
+                <th scope="col">Image</th>
                 <th scope="col">Author</th>
                 <th scope="col">Category</th>
                 <th scope="col">CreatedAt</th>
