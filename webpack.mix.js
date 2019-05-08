@@ -21,13 +21,19 @@ mix.styles([
 mix.styles([
     'resources/dropzone/min/dropzone.min.css'
 ],'public/css/dropzone.css');
+/*For comment box*/
+mix.scripts([
+    'resources/css/commentBox.css',
+],'public/css/commentBox.css');
+
+
 /*For custom javascripts*/
 mix.scripts([
     'resources/js/script.js'
 ],'public/js/script.js');
-
 /*For image upload dropbox*/
 mix.scripts([
     'resources/dropzone/min/dropzone.min.js',
 ],'public/js/dropzone.js');
+
 
