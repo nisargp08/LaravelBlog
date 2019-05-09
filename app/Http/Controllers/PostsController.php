@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use App\CommentReply;
+
 class PostsController extends Controller
 {
     /**
@@ -49,8 +51,12 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+        /*Finding the post*/
         $post = Post::findOrFail($id);
+        /*Getting comments for that post*/
         $comments = Comment::where('post_id',$post->id)->get();
+        /*Getting replies for each comment*/
+        //$replies = CommentReply::where('comment_id',$comments['id'])->get();
         return view('posts.show',compact('post','comments'));
     }
 

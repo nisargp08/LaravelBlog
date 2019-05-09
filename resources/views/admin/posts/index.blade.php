@@ -30,7 +30,7 @@
     <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">#Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
                 <th scope="col">Image</th>
@@ -44,9 +44,9 @@
             <tbody>
                 @foreach($posts as $key => $post)
                     <tr>
-                        <th scope="row">{{$post->id}}</th>  
-                        <td>{{$post->title}}</td>
-                        <td>{{str_limit($post->body,100,'...')}}</td>  
+                        <th scope="row">{{$post->id}}</th>
+                        <td>{{str_limit($post->title,70)}}</td>
+                        <td>{{str_limit($post->body,100)}}</td>
                         <td><img alt="" src="{{$post->photo ? $post->photo->file : '/images/placeholder_blog.png'}}" class="indexImgDimension"></td>
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
@@ -62,7 +62,7 @@
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         @endif
                         <td>
-                            <a href="{{route('posts.show',$post->id)}}" class="fas fa-eye icon-pad"></a>
+                            <a href="{{route('blogposts.show',$post->id)}}" class="fas fa-eye icon-pad"></a>
                             <a href="{{route('posts.edit',$post->id)}}" class="fas fa-user-edit icon-pad"></a>
                             <a class="fas fa-trash icon-pad" data-toggle="modal" data-target="#exampleModal<?php echo $key?>"></a>
                         </td>

@@ -9,10 +9,8 @@ class CommentReply extends Model
     //
     protected $fillable = [
         'comment_id',
-        'author',
-        'email',
+        'user_id',
         'body',
-        'is_active',
     ];
     public function comment(){
         return $this->belongsTo('App\Comment');

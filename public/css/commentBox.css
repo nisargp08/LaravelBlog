@@ -115,7 +115,7 @@ body {
  ---------------------------*/
 .comments-list .comment-avatar {
     width: 65px;
-    height: 65px;
+    height: auto;
     position: relative;
     z-index: 99;
     float: left;

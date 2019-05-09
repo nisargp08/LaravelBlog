@@ -50,7 +50,7 @@
         <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">#Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">CreatedAt</th>
                     <th scope="col">UpdatedAt</th>
@@ -111,8 +111,8 @@
 </div>
 @else
 <div class="NoDataMessage">
-        <h2><b>No Categories to Show!!</b></h2>
-    </div>
+    <h2><b>No Categories to Show!!</b></h2>
+</div>
 @endif
 @include('layouts.messages')
 @endsection
