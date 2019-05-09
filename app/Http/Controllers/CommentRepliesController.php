@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\CommentReply;
 class CommentRepliesController extends Controller
 {
     /**
@@ -80,5 +82,23 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createReply(Request $request){
+        $validatedComment = $this->validate(
+            $request,[
+                'body' => 'required|max:255',
+            ],
+            [
+                'body.required' => 'Comment body is required',
+                'body.max' => 'Maximum allowed characters 255',
+            ]
+        );
+        $reply = $request->all();
+        $user = Auth::user();
+        $reply['user_id'] = $user->id;
+        CommentReply::create($reply);
+        $request->session()->flash('comment_submitted', 'Your comments has been submitted and awaiting moderation ');
+        return redirect()->back();
     }
 }

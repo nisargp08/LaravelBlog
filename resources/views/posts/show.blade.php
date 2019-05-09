@@ -82,47 +82,53 @@
             <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
                     @foreach ($comments as $comment)
-                        <li>
-                            <div class="comment-main-level">
-                            <!-- Avatar -->
-                            <div class="comment-avatar"><img src="{{$comment->user->photo_id ? $comment->user->photo->file : '/images/placeholder.jpg'}}" alt=""></div>
-                                <!-- Contenedor del Comentario -->
-                                <div class="comment-box">
-                                    <div class="comment-head">
-                                        <h6 class="comment-name {{ $comment->user_id == $comment->post->user_id ? 'by-author' : ''}}">{{ $comment->user->name }}</h6>
-                                        <span>{{ $comment->created_at ? $comment->created_at->diffForHumans() : 'Date unavailable'}}</span>
-                                        <i class="fa fa-reply"></i>
-                                        <i class="fa fa-heart"></i>
-                                    </div>
-                                    <div class="comment-content">
-                                        {{ $comment->body }}
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Replies for the comment -->
-                            <ul class="comments-list reply-list">
-                                <!-- Put foreach here after ul-->
-                                <li>
-                                    <!-- Avatar -->
-                                    <div class="comment-avatar">
-                                        <img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="">
-                                    </div>
+                        @if($comment->is_active == 1)
+                            <li>
+                                <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar"><img src="{{$comment->user->photo_id ? $comment->user->photo->file : '/images/placeholder.jpg'}}" alt=""></div>
+                                    <!-- Contenedor del Comentario -->
                                     <div class="comment-box">
                                         <div class="comment-head">
-                                            <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                            <span>hace 10 minutos</span>
+                                            <h6 class="comment-name {{ $comment->user_id == $comment->post->user_id ? 'by-author' : ''}}">{{ $comment->user->name }}</h6>
+                                            <span>{{ $comment->created_at ? $comment->created_at->diffForHumans() : 'Date unavailable'}}</span>
                                             <i class="fa fa-reply"></i>
                                             <i class="fa fa-heart"></i>
                                         </div>
                                         <div class="comment-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                            {{ $comment->body }}
                                         </div>
                                     </div>
-                                </li>
-                                <!-- ends foreach here before ul -->
-                            </ul>
-                            <!-- Reply section for a comment ends -->
-                        </li>
+                                </div>
+                                <!-- Replies for the comment -->
+                                <ul class="comments-list reply-list">
+                                    <!-- Put foreach here after ul-->
+                                    <li>
+                                        <!-- Avatar -->
+                                        <div class="comment-avatar">
+                                                <img src="{{ Auth::user()->photo_id ? Auth::user()->photo->file : '/images/placeholder.png' }}" alt="">
+                                        </div>
+                                        <div class="comment-box">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name">{{ Auth::user()->name }}</h6>
+                                            </div>
+                                            <div class="comment-content">
+                                                {!! Form::open(['method' => 'POST','action'=>'CommentRepliesController@createReply']) !!}
+                                                    {!! Form::hidden('comment_id',$comment->id) !!}
+                                                    <div class="form-group">
+                                                    {!! Form::textarea('body',null,['placeholder' => 'What are your thoughts?','class' => 'form-control','rows' => 3, 'required']) !!}
+                                                    </div>
+                                                    {!! Form::submit('Submit Reply', ['class' => 'btn btn-primary']) !!}
+                                                {!! Form::close()!!}
+                                                <div class="display-error">@include('layouts.messages')</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- ends foreach here before ul -->
+                                </ul>
+                                <!-- Reply section for a comment ends -->
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div> <!--Comments-Container ends -->

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Comment;
+use App\Post;
 
 class PostCommentsController extends Controller
 {
@@ -64,6 +66,9 @@ class PostCommentsController extends Controller
     public function show($id)
     {
         //
+        $post = Post::findOrFail($id);
+        $comments = $post->comment;
+        return view('admin.comments.show',compact('comments','post'));
     }
 
     /**
@@ -87,6 +92,14 @@ class PostCommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $comment = Comment::findOrFail($id);
+        $comment_status = $request->is_active;
+        $comment->update(['is_active' => $comment_status]);
+        if($comment_status == 0)
+            $request->session()->flash('comment_status', 'Comment with ID "'.$comment->id.'" has been successfully unapproved');
+        else if($comment_status == 1)
+        $request->session()->flash('comment_status', 'Comment with ID "'.$comment->id.'" has been successfully approved');
+        return redirect()->route('comments.index');
     }
 
     /**
@@ -97,6 +110,10 @@ class PostCommentsController extends Controller
      */
     public function destroy($id)
     {
+        $commentToBeDeleted = Comment::findOrFail($id);
+        Session::flash('comment_deleted', 'Comment with ID "'.$commentToBeDeleted->id.'" has been successfully deleted');
+        $commentToBeDeleted->delete();
+        return redirect()->route('comments.index');
         //
     }
 }

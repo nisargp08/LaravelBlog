@@ -62,9 +62,10 @@
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         @endif
                         <td>
-                            <a href="{{route('blogposts.show',$post->id)}}" class="fas fa-eye icon-pad"></a>
-                            <a href="{{route('posts.edit',$post->id)}}" class="fas fa-user-edit icon-pad"></a>
-                            <a class="fas fa-trash icon-pad" data-toggle="modal" data-target="#exampleModal<?php echo $key?>"></a>
+                            <a href="{{route('blogposts.show',$post->id)}}" class="fas fa-eye icon-pad" title="View Post"></a>
+                            <a href="{{route('comments.show',$post->id)}}" class="far fa-comments icon-pad" title="View Post Comments"></a>
+                            <a href="{{route('posts.edit',$post->id)}}" class="fas fa-user-edit icon-pad" title="Edit Post"></a>
+                            <a class="fas fa-trash icon-pad" data-toggle="modal" data-target="#exampleModal<?php echo $key?>" title="Delete Post"></a>
                         </td>
                     </tr>
                     <!-- Modal for deleting user confirmation-->

@@ -135,8 +135,8 @@ body {
 }
 
 .reply-list .comment-avatar {
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: auto;
 }
 
 .comment-main-level:after {

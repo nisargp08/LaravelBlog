@@ -104,10 +104,12 @@ class AdminPostsController extends Controller
         $postData = $request->all();
         if($file = $request->file('photo_id')){
             if(!is_null($post['photo_id'])){
-                /*Deleting image from the 'images' folder*/
-                unlink(public_path().$post->photo->file);
-                /*Deleting the photo from the photo table*/
-                $post->photo->delete();
+                if(\file_exists(public_path().$post->photo->file)){
+                    /*Deleting image from the 'images' folder*/
+                    unlink(public_path().$post->photo->file);
+                    /*Deleting the photo from the photo table*/
+                    $post->photo->delete();
+                }
             }
             $name = time() . $file->getClientOriginalName();
             $file->move('images',$name);
