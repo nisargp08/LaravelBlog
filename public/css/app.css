@@ -10891,6 +10891,10 @@ a.blog-redirection-to-single:hover {
   margin: 10px 20px 0px 20px;
 }
 
+.comment-reply-container {
+  display: none;
+}
+
 /*
 .card-image {
     position: absolute;

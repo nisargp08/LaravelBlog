@@ -116,4 +116,21 @@ class PostCommentsController extends Controller
         return redirect()->route('comments.index');
         //
     }
+    public function createComment(Request $request){
+        $validatedComment = $this->validate(
+            $request,[
+                'body' => 'required|max:255',
+            ],
+            [
+                'body.required' => 'Comment body is required',
+                'body.max' => 'Maximum allowed characters 255',
+            ]
+        );
+        $comment = $request->all();
+        $user = Auth::user();
+        $comment['user_id'] = $user->id;
+        Comment::create($comment);
+        $request->session()->flash('comment_submitted', 'Your comments has been submitted and awaiting moderation ');
+        return redirect()->back();
+    }
 }

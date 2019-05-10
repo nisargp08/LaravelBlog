@@ -61,6 +61,7 @@
                                 <h6 class="comment-name">{{ Auth::user()->name }}</h6>
                             </div>
                             <div class="comment-content">
+                                @if(Auth::user()->checkRole() == 'Admin')
                                 {!! Form::open(['method' => 'POST','action'=>'PostCommentsController@store']) !!}
                                     {!! Form::hidden('post_id',$post->id) !!}
                                     <div class="form-group">
@@ -69,6 +70,15 @@
                                     {!! Form::submit('Submit Comment', ['class' => 'btn btn-primary']) !!}
                                 {!! Form::close()!!}
                                 <div class="display-error">@include('layouts.messages')</div>
+                                @elseif(Auth::check())
+                                {!! Form::open(['method' => 'POST','action'=>'PostCommentsController@createComment']) !!}
+                                    {!! Form::hidden('post_id',$post->id) !!}
+                                    <div class="form-group">
+                                    {!! Form::textarea('body',null,['placeholder' => 'What are your thoughts?','class' => 'form-control','rows' => 3, 'required']) !!}
+                                    </div>
+                                    {!! Form::submit('Submit Comment', ['class' => 'btn btn-primary']) !!}
+                                {!! Form::close()!!}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -81,49 +91,77 @@
             <!-- Displaying all the comments and its reply-->
             <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
-                    @foreach ($comments as $comment)
+                    @foreach ($comments as $key => $comment)
                         @if($comment->is_active == 1)
                             <li>
                                 <div class="comment-main-level">
-                                <!-- Avatar -->
-                                <div class="comment-avatar"><img src="{{$comment->user->photo_id ? $comment->user->photo->file : '/images/placeholder.jpg'}}" alt=""></div>
+                                    <!-- Avatar -->
+                                    <div class="comment-avatar">
+                                        <img src="{{$comment->user->photo_id ? $comment->user->photo->file : '/images/placeholder.jpg'}}" alt="">
+                                    </div>
                                     <!-- Contenedor del Comentario -->
                                     <div class="comment-box">
                                         <div class="comment-head">
                                             <h6 class="comment-name {{ $comment->user_id == $comment->post->user_id ? 'by-author' : ''}}">{{ $comment->user->name }}</h6>
                                             <span>{{ $comment->created_at ? $comment->created_at->diffForHumans() : 'Date unavailable'}}</span>
-                                            <i class="fa fa-reply"></i>
-                                            <i class="fa fa-heart"></i>
+                                                <i data-index="{{ $key }}" class="fa fa-reply replyToggle"></i>
+                                            <!--<i class="fa fa-heart"></i>-->
                                         </div>
                                         <div class="comment-content">
                                             {{ $comment->body }}
                                         </div>
                                     </div>
                                 </div>
+                            </li>
                                 <!-- Replies for the comment -->
-                                <ul class="comments-list reply-list">
+                                <ul class="comments-list reply-list ">
                                     <!-- Put foreach here after ul-->
-                                    <li>
-                                        <!-- Avatar -->
-                                        <div class="comment-avatar">
-                                                <img src="{{ Auth::user()->photo_id ? Auth::user()->photo->file : '/images/placeholder.png' }}" alt="">
-                                        </div>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <h6 class="comment-name">{{ Auth::user()->name }}</h6>
-                                            </div>
-                                            <div class="comment-content">
-                                                {!! Form::open(['method' => 'POST','action'=>'CommentRepliesController@createReply']) !!}
-                                                    {!! Form::hidden('comment_id',$comment->id) !!}
-                                                    <div class="form-group">
-                                                    {!! Form::textarea('body',null,['placeholder' => 'What are your thoughts?','class' => 'form-control','rows' => 3, 'required']) !!}
+                                    @if(count($comment->replies) > 0)
+                                        @foreach($comment->replies as $reply)
+                                            @if($reply->is_active == 1)
+                                                <li>
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar">
+                                                            <img src="{{ $reply->user->photo_id ? $reply->user->photo->file : '/images/placeholder.png'}}" alt="">
                                                     </div>
-                                                    {!! Form::submit('Submit Reply', ['class' => 'btn btn-primary']) !!}
-                                                {!! Form::close()!!}
-                                                <div class="display-error">@include('layouts.messages')</div>
+                                                    <div class="comment-box">
+                                                        <div class="comment-head">
+                                                            <h6 class="comment-name {{ $reply->user->id == $post->user_id ? 'by-author' : '' }}">{{ $reply->user->name }}</h6>
+                                                            <span>{{ $reply->created_at ? $reply->created_at->diffForHumans() : 'Date unavailable'}}</span>
+                                                             <!--<i class="fa fa-reply"></i>-->
+                                                            <!--<i class="fa fa-heart"></i>-->
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            {{ $reply->body }}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    <div class="comment-reply-container" id="{{ $key }}">
+                                        <li>
+                                            <!-- Avatar -->
+                                            <div class="comment-avatar">
+                                                    <img src="{{ Auth::user()->photo_id ? Auth::user()->photo->file : '/images/placeholder.png' }}" alt="">
                                             </div>
-                                        </div>
-                                    </li>
+                                            <div class="comment-box">
+                                                <div class="comment-head">
+                                                    <h6 class="comment-name">{{ Auth::user()->name }}</h6>
+                                                </div>
+                                                <div class="comment-content">
+                                                    {!! Form::open(['method' => 'POST','action'=>'CommentRepliesController@createReply']) !!}
+                                                        {!! Form::hidden('comment_id',$comment->id) !!}
+                                                        <div class="form-group">
+                                                        {!! Form::textarea('body',null,['placeholder' => 'What are your thoughts?','class' => 'form-control','rows' => 3, 'required']) !!}
+                                                        </div>
+                                                        {!! Form::submit('Submit Reply', ['class' => 'btn btn-primary']) !!}
+                                                    {!! Form::close()!!}
+                                                    <div class="display-error">@include('layouts.messages')</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
                                     <!-- ends foreach here before ul -->
                                 </ul>
                                 <!-- Reply section for a comment ends -->
@@ -133,5 +171,5 @@
                 </ul>
             </div> <!--Comments-Container ends -->
         </div><!-- container division tag ends -->
-    </div><!-- responses division tag ends -->
+    </div><!-- responses division tag ends --><hr><br>
 @endsection

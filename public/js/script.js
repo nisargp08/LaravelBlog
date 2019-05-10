@@ -16,3 +16,11 @@ function readURL(input) {
       reader.readAsDataURL(input.files[0]);
   }
 }
+/*To toggle reply textarea on clicking*/
+$(document).ready(function(e){
+    $('.replyToggle').on('click',function(e){
+        $('#' + $(this).data('index')).toggle();
+    });
+});
+
+
