@@ -8,7 +8,15 @@
     </button>
   </div>
 @endif
-<h2 class="headingTag">Comments </h2><hr>
+@if(Session::has('comment_deleted'))
+  <div class="alert alert-dismissible alert-success fade show">
+    {{ session('comment_deleted')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+@endif
+<h2 class="headingTag">Comments </h2>
     @if(count($comments) > 0)
     <table class="table table-striped table-hover">
             <thead>
@@ -51,7 +59,7 @@
                     <td>{{$comment->updated_at->diffForHumans()}}</td>
                     @endif
                     <td>
-                        <a href="{{route('comments.show',$comment->id)}}" class="fas fa-eye icon-pad" title="View Comment"></a>
+                        <a href="{{route('replies.show',$comment->id)}}" class="far fa-comments icon-pad" title="Show Replies"></a>
                         <a class="fas fa-user-check icon-pad" data-toggle="modal" data-target="#exampleModal<?php echo $key?>" title="Approve/Unapprove Comment"></a>
                         <a class="fas fa-trash icon-pad" data-toggle="modal" data-target="#deleteModal<?php echo $key?>" title="Delete Comment"></a>
 

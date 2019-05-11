@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\CommentReply;
+use App\Comment;
+use App\Post;
+
 class CommentRepliesController extends Controller
 {
     /**
@@ -47,7 +50,14 @@ class CommentRepliesController extends Controller
      */
     public function show($id)
     {
-        //
+        //Incoming id is comment id
+        $replies = CommentReply::where('comment_id',$id)->get();
+        //Getting post data
+        $comment = Comment::find($id);
+        $postID = $comment->post->id;
+        $post = Post::find($postID);
+        return view('admin.comments.replies.show',compact('replies','post'));
+
     }
 
     /**
@@ -71,6 +81,14 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $reply = CommentReply::findOrFail($id);
+        $reply_status = $request->is_active;
+        $reply->update(['is_active' => $reply_status]);
+        if($reply_status == 0)
+            $request->session()->flash('reply_status', 'Reply with ID "'.$reply->id.'" has been successfully unapproved');
+        else if($reply_status == 1)
+        $request->session()->flash('reply_status', 'Reply with ID "'.$reply->id.'" has been successfully approved');
+        return redirect()->back();
     }
 
     /**
@@ -82,6 +100,10 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
+        $replyToBeDeleted = CommentReply::findOrFail($id);
+        Session::flash('reply_deleted', 'Reply with ID "'.$replyToBeDeleted->id.'" has been successfully deleted');
+        $replyToBeDeleted->delete();
+        return redirect()->back();
     }
 
     public function createReply(Request $request){

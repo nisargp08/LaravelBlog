@@ -97,7 +97,7 @@
                                 <div class="comment-main-level">
                                     <!-- Avatar -->
                                     <div class="comment-avatar">
-                                        <img src="{{$comment->user->photo_id ? $comment->user->photo->file : '/images/placeholder.jpg'}}" alt="">
+                                        <img src="{{$comment->user->photo_id ? $comment->user->photo->file : '/images/placeholder.png'}}" alt="">
                                     </div>
                                     <!-- Contenedor del Comentario -->
                                     <div class="comment-box">
@@ -168,8 +168,8 @@
                             </li>
                         @endif
                     @endforeach
-                </ul>
-            </div> <!--Comments-Container ends -->
+                </ul><hr>
+            </div> <!--Comments-Container ends --><br>
         </div><!-- container division tag ends -->
-    </div><!-- responses division tag ends --><hr><br>
+    </div><!-- responses division tag ends -->
 @endsection
