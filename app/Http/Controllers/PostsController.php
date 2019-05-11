@@ -48,11 +48,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
         /*Finding the post*/
-        $post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($slug);
         /*Getting comments for that post*/
         $comments = Comment::where('post_id',$post->id)->get();
         /*Getting replies for each comment*/

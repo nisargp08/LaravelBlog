@@ -47,7 +47,7 @@
                 </button>
             </div>
             @endif
-            @if(Auth::user())
+            @if(Auth::check())
             <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
                     <div class="comment-main-level">
@@ -139,6 +139,7 @@
                                             @endif
                                         @endforeach
                                     @endif
+                                    @if(Auth::check())
                                     <div class="comment-reply-container" id="{{ $key }}">
                                         <li>
                                             <!-- Avatar -->
@@ -162,6 +163,7 @@
                                             </div>
                                         </li>
                                     </div>
+                                    @endif
                                     <!-- ends foreach here before ul -->
                                 </ul>
                                 <!-- Reply section for a comment ends -->

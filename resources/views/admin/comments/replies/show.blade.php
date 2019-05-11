@@ -60,7 +60,7 @@
                             <td>{{$reply->updated_at->diffForHumans()}}</td>
                             @endif
                             <td>
-                                <a href="{{route('blogposts.show',$reply->comment->post_id)}}" class="fas fa-eye icon-pad" title="View Post"></a>
+                                <a href="{{route('blogposts.show',$reply->comment->post->slug)}}" class="fas fa-eye icon-pad" title="View Post"></a>
                                 <a class="fas fa-user-check icon-pad" data-toggle="modal" data-target="#exampleModal<?php echo $key?>" title="Approve/Unapprove Reply"></a>
                                 <a class="fas fa-trash icon-pad" data-toggle="modal" data-target="#deleteModal<?php echo $key?>" title="Delete Reply"></a>
                             </td>

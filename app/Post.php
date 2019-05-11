@@ -1,12 +1,31 @@
 <?php
 
 namespace App;
-
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     //
+    //Using slug for pretty url : Displaying post title instead of id
+    use Sluggable;
+    //Using this to use function like findbyslug,findbyslugorfail,etc in controller
+    use SluggableScopeHelpers;
+     /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate'=> true,
+            ]
+        ];
+    }
     protected $fillable = [
         'user_id',
         'category_id',

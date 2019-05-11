@@ -62,7 +62,7 @@
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         @endif
                         <td>
-                            <a href="{{route('blogposts.show',$post->id)}}" class="fas fa-eye icon-pad" title="View Post"></a>
+                            <a href="{{route('blogposts.show',$post->slug)}}" class="fas fa-eye icon-pad" title="View Post"></a>
                             <a href="{{route('comments.show',$post->id)}}" class="far fa-comments icon-pad" title="View Post Comments"></a>
                             <a href="{{route('posts.edit',$post->id)}}" class="fas fa-user-edit icon-pad" title="Edit Post"></a>
                             <a class="fas fa-trash icon-pad" data-toggle="modal" data-target="#exampleModal<?php echo $key?>" title="Delete Post"></a>
@@ -101,7 +101,13 @@
                     </div>
                 @endforeach
             </tbody>
-    </table>
+    </table><hr>
+    <!-- Pagination links -->
+    <div class="row">
+        <div class="col-md-6 offset-md-5">
+            {{ $posts->links() }}
+        </div>
+    </div>
 @else
     <div class="NoDataMessage">
         <h2><b>No Posts to Show!!</b></h2>

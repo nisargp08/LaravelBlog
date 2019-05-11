@@ -9,7 +9,7 @@
     @if(count($posts) > 0)
     <div class="blog-card-row">
         @foreach ($posts as $post)
-        <a class="blog-redirection-to-single" href="{{ route('blogposts.show',$post->id) }}">
+        <a class="blog-redirection-to-single" href="{{ route('blogposts.show',$post->slug) }}">
             <div class="blog-card">
                 <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Photo unavailable">
                 <div class="card-body">
