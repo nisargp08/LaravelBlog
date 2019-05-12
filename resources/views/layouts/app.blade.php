@@ -89,4 +89,5 @@
 </body>
 @yield('footer-scripts')
 <script src="{{ asset('js/script.js') }}"></script>
+<!--<script id="dsq-count-scr" src="//laraveleducation.disqus.com/count.js" async></script>-->
 </html>
