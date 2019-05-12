@@ -1,5 +1,6 @@
 @extends('layouts.sidebar')
 @section('pageContent')
+@include('layouts.tinyeditor')
 <h2>Edit Post</h2>
 <hr>
 <button type="button" onclick="window.location='{{ URL::route('posts.index') }}'" class="btn btn-dark">Go Back</button>

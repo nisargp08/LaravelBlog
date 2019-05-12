@@ -29,7 +29,7 @@
         <img src="{{ $post->photo ? $post->photo->file : '/images/placeholder_blog.png'}}" class="img-fluid rounded" alt="Blog Image">
     </div>
     <div class="blog-content">
-        <p>{{$post->body}}</p>
+        <p>{!! $post->body !!}</p>
     </div>
     <div class="tag"><b>{{$post->category->name }}<b></div><hr>
 </div>

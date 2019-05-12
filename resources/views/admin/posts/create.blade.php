@@ -1,5 +1,6 @@
 @extends('layouts.sidebar')
 @section('pageContent')
+@include('layouts.tinyeditor')
 <h2>Create Post</h2>
 <hr>
 <button type="button" onclick="window.location='{{ URL::route('posts.index') }}'" class="btn btn-dark">Go Back</button>
@@ -26,7 +27,7 @@
     <div class="form-group">
         {!! Form::submit('Create Post',['class' => 'btn btn-success']) !!}
     </div>
-    
+
 @include('layouts.messages')
 {!! Form::close() !!}
 @endsection
