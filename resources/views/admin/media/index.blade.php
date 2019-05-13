@@ -27,8 +27,15 @@
     </button>
   </div>
 @endif
+@if(Session::has('bulk_photo_deleted'))
+  <div class="alert alert-dismissible alert-success fade show">
+    {{ session('bulk_photo_deleted')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+@endif
 <h2 class="headingTag">Media </h2><hr>
-@if(count($media) > 0)
 <div class="row">
     <div class="col">
         {!! Form::open(['method' => 'POST','action'=>'AdminMediaController@store','class'=>'dropzone','files' => 'true']) !!}
@@ -39,10 +46,21 @@
     </div>
 </div>
 <br>
+@if(count($media) > 0)
+{!! Form::open(['method' => 'DELETE' , 'action' => 'AdminMediaController@deleteBulkMedia']) !!}
 <div class="row">
+    <div class="form-group massSelection">
+        <select name="checkboxArray" class="form-control">
+            <option value="delete">Delete</option>
+        </select>
+    </div>
+    <div class="form-group">
+        {!! Form::submit('Submit',['class' => 'btn btn-primary','title' => 'Delete Selected items' ]) !!}
+    </div>
     <table class="table table-striped table-hover">
             <thead>
             <tr>
+                <th><input type="checkbox" class="options"></th>
                 <th scope="col">#Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Image</th>
@@ -54,6 +72,7 @@
             <tbody>
                 @foreach($media as $key => $image)
                     <tr>
+                        <th><input class="checkBoxes" type="checkbox" name="checkboxArray[]" value="{{ $image->id }}"></th>
                         <th scope="row">{{$image->id}}</th>
                         <td>{{$image->file}}</td>
                         <td><img alt="" src="{{$image->file}}" class="indexImgDimension"></td>
@@ -107,6 +126,7 @@
             </tbody>
     </table>
 </div>
+{!! Form::close() !!}
 @else
 <div class="NoDataMessage">
         <h2><b>No Media to Show!!</b></h2>

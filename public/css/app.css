@@ -10895,6 +10895,12 @@ a.blog-redirection-to-single:hover {
   display: none;
 }
 
+/*Admin panel mass selection select option*/
+
+.massSelection {
+  padding-right: 10px;
+}
+
 /*
 .card-image {
     position: absolute;

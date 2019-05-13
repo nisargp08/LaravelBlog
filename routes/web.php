@@ -37,6 +37,8 @@ Route::group(['middleware' => 'Admin'],function(){
     Route::resource('/admin/comments','PostCommentsController');
     /*Routes for comments replies management on admin panel*/
     Route::resource('/admin/comments/replies','CommentRepliesController');
+    /*For bulk media delete*/
+    Route::delete('/admin/delete/media','AdminMediaController@deleteBulkMedia');
 
 });
 

@@ -16,11 +16,26 @@ function readURL(input) {
       reader.readAsDataURL(input.files[0]);
   }
 }
-/*To toggle reply textarea on clicking*/
+
 $(document).ready(function(e){
+    /*To toggle reply textarea on clicking*/
     $('.replyToggle').on('click',function(e){
         $('#' + $(this).data('index')).toggle();
     });
+    /*For Admin panel mass selection checkboxes*/
+    $('.options').on('click',function(e){
+        if(this.checked){
+            $('.checkBoxes').each(function(){
+                this.checked = true;
+            });
+        }
+        else{
+            $('.checkBoxes').each(function(){
+                this.checked = false;
+            })
+        }
+    });
 });
+
 
 

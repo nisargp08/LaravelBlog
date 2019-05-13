@@ -108,4 +108,21 @@ class AdminMediaController extends Controller
         }
         return redirect()->route('media.index');
     }
-}
+    /*For deleting bulk media*/
+    public function deleteBulkMedia(Request $request){
+        if(count($request->checkboxArray) > 1){
+            $photos = Photo::findOrFail($request->checkboxArray);
+            if($photos != null){
+                foreach($photos as $key => $photo){
+                    if(\file_exists(public_path().$photo->file)){
+                        /*Deleting image from the image folder*/
+                        unlink(public_path().$photo->file);
+                    }
+                    $photo->delete();
+                }
+                Session::flash('bulk_photo_deleted',($key+1).' selected image has been successfully deleted');
+            }
+        }
+        return redirect()->route('media.index');
+    }//function ends
+}//class ends
