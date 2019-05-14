@@ -14,17 +14,16 @@
 /*Authentication Routes*/
 Auth::routes();
 /*Application Routes*/
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/blogposts','PostsController');
 /*Grouping all the admin routes under 'Admin' middleware*/
 Route::group(['middleware' => 'Admin'],function(){
     /*Dashboard Route*/
-    Route::get('/admin',function(){
-        return view('admin.index');
-    });
+    Route::get('/admin','AdminsController@index');
     /*Routes for user management on admin panel*/
     Route::resource('/admin/users','AdminUserController');
     /*Rotues for posts management on admin panel*/
