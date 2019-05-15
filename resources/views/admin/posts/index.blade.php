@@ -32,7 +32,6 @@
             <tr>
                 <th scope="col">#Id</th>
                 <th scope="col">Title</th>
-                <th scope="col">Body</th>
                 <th scope="col">Image</th>
                 <th scope="col">Author</th>
                 <th scope="col">Category</th>
@@ -45,8 +44,7 @@
                 @foreach($posts as $key => $post)
                     <tr>
                         <th scope="row">{{$post->id}}</th>
-                        <td>{{str_limit($post->title,70)}}</td>
-                        <td>{{str_limit($post->body,100)}}</td>
+                        <td><a title="View Post" class="title-redirect" href="{{route('blogposts.show',$post->slug)}}">{{str_limit($post->title,70)}}</a></td>
                         <td><img alt="" src="{{$post->photo ? $post->photo->file : '/images/placeholder_blog.png'}}" class="indexImgDimension"></td>
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>

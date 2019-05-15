@@ -197,6 +197,19 @@ a.blog-redirection-to-single:hover{
 .massSelection{
     padding-right: 10px;
 }
+/*Posts admin panel anchor tag*/
+a.title-redirect{
+    color: black;
+}
+a.title-redirect:hover,a.title-redirect:focus{
+    color:  rgba(102, 102, 100, 0.849);
+    transition: 0.5s delay ease;
+    text-decoration: none;
+}
+/*Container margin top to leave some space bertween navigation bar and the container*/
+.container-margin{
+    margin-top: 20px;
+}
 /*
 .card-image {
     position: absolute;

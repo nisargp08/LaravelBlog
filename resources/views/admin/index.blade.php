@@ -5,7 +5,7 @@
 @endsection
     @section('pageContent')
     <h1>Admin - Dashboard</h1>
-    <canvas id="myChart" width="400" height="200"></canvas><hr>
+    <canvas id="myChart" width="400" height="100"></canvas><hr>
     @endsection
 @section('scripts')
     <!-- Chart js -->
