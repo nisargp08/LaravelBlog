@@ -143,6 +143,6 @@ class UserPostsController extends Controller
         }
         $postToBeDeleted->delete();
         Session::flash('post_deleted','Post "'.$postToBeDeleted->title.'" has been successfully deleted.');
-        return redirect()->route('userposts.index');
+        return redirect()->back();
     }
 }

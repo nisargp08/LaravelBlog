@@ -10904,6 +10904,13 @@ a.icon-pad:focus {
   font-size: 20px;
 }
 
+.save-icon-details {
+  text-align: right;
+  padding-right: 30px;
+  vertical-align: middle;
+  margin-top: 3%;
+}
+
 /*
 .card-author{
     bottom: 0;
