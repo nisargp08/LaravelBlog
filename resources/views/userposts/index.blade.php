@@ -19,12 +19,30 @@
         @foreach ($posts as $post)
         <a class="blog-redirection-to-single" href="{{ route('blogposts.show',$post->slug) }}">
             <div class="blog-card">
-                <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Photo unavailable">
-                <div class="card-body">
-                    <div class="card-text card-text-font">{{ str_limit($post->title,70) }}</div>
-                </div><hr class="blog-hr">
-                <div class="card-date">{{ $post->created_at ? $post->created_at->toFormattedDateString() : 'Date Unavailable' }}</div>
-                <div class="card-author">By {{ $post->user_id ? $post->user->name : 'Anonymous' }}</div>
+                <table class="card-container">
+                    <tr>
+                        <td valign="top">
+                            <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Photo unavailable">
+                            <div class="overlay">
+                                <a title="Edit Post" href="{{ route('userposts.edit',$post->id) }}"><i class="fas fa-edit operation-icon"></i></a>
+                                <a title="Save Post" href="#"><i class="fas fa-bookmark operation-icon"></i></a>
+                                <a title="Delete Post" href="{{ route('userposts.destroy',$post->id) }}"><i class="fas fa-trash operation-icon"></i></a>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text card-text-font">{{ str_limit($post->title,70) }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="bottom">
+                            <hr>
+                            <div class="card-foot">
+                                <div class="card-date">{{ $post->created_at ? $post->created_at->toFormattedDateString() : 'Date Unavailable' }}</div>
+                                <div class="card-author">By {{ $post->user_id ? $post->user->name : 'Anonymous' }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </a>
         @endforeach

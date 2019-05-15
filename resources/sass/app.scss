@@ -158,6 +158,7 @@ a.icon-pad:hover,a.icon-pad:focus{
     transition: height 0.3s, box-shadow 0.3s;
 }
 .blog-card:hover {
+    opacity: 0.7;
     height: 390px;
     box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
 }
@@ -209,6 +210,32 @@ a.title-redirect:hover,a.title-redirect:focus{
 /*Container margin top to leave some space bertween navigation bar and the container*/
 .container-margin{
     margin-top: 20px;
+}
+/*Card container for all the cards used to display blogs - blogposts.index,userposts.index*/
+.card-container{
+    border-collapse: collapse;
+    height: 100%;
+    position: relative;
+}
+.card-foot{
+    padding-bottom: 10px;
+}
+/*To display blog operations icons like edit,share,delete,favourite*/
+.overlay {
+    position: absolute;
+    transition: .5s ease;
+    color: black;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+  }
+.operation-icon{
+    text-decoration: none;
+    color: black;
+}
+.operation-icon:hover,.operation-icon:focus{
+    box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
+    font-size: 20px;
 }
 /*
 .card-image {
