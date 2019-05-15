@@ -14,7 +14,7 @@
                 <img class="card-img-top" src="{{ $post->photo_id ? $post->photo->file : '/images/placeholder_blog.png' }}" alt="Photo unavailable">
                 <div class="card-body">
                     <div class="card-text card-text-font">{{ str_limit($post->title,70) }}</div>
-                </div><hr class="blog-hr">
+                </div><hr class="card-hr">
                 <div class="card-date">{{ $post->created_at ? $post->created_at->toFormattedDateString() : 'Date Unavailable' }}</div>
                 <div class="card-author">By {{ $post->user_id ? $post->user->name : 'Anonymous' }}</div>
             </div>

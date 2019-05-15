@@ -149,7 +149,7 @@ a.icon-pad:hover,a.icon-pad:focus{
 .blog-card {
     position: relative;
     background-color: #FFFFFF;
-    height: 370px;
+    height: 380px;
     width: 250px;
     margin: 10px;
     overflow: hidden;
@@ -159,14 +159,47 @@ a.icon-pad:hover,a.icon-pad:focus{
 }
 .blog-card:hover {
     opacity: 0.7;
-    height: 390px;
+    height: 400px;
     box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
+}
+/*Card container for all the cards used to display blogs - blogposts.index,userposts.index*/
+.card-container{
+    border-collapse: collapse;
+    height: 100%;
+    position: relative;
 }
 .card-text-font{
     font-size: 18px;
     font-weight: 600;
     color: black;
 }
+.card-author{
+    color: rgba(102, 102, 100, 0.849);
+    font-weight: 600;
+    margin-left: 5px;
+}
+.card-date{
+    color: black;
+    font-weight: 600;
+}
+.card-details{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.icon-details{
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 8px;
+}
+.operation-icon{
+    text-decoration: none;
+    color: rgb(37, 37, 37);
+}
+.operation-icon:hover,.operation-icon:focus{
+    box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
+    font-size: 20px;
+}
+/*
 .card-author{
     bottom: 0;
     margin: 0px 0px 0px 20px;
@@ -179,9 +212,9 @@ a.icon-pad:hover,a.icon-pad:focus{
     margin-left: 20px;
     color: black;
     font-weight: 600;
-}
-.blog-hr{
-    margin-bottom: 0;
+}*/
+.card-hr{
+    border-color: lightgrey;
 }
 a.blog-redirection-to-single:hover{
     text-decoration: none;
@@ -211,32 +244,26 @@ a.title-redirect:hover,a.title-redirect:focus{
 .container-margin{
     margin-top: 20px;
 }
-/*Card container for all the cards used to display blogs - blogposts.index,userposts.index*/
-.card-container{
-    border-collapse: collapse;
-    height: 100%;
-    position: relative;
-}
-.card-foot{
-    padding-bottom: 10px;
-}
 /*To display blog operations icons like edit,share,delete,favourite*/
-.overlay {
-    position: absolute;
-    transition: .5s ease;
-    color: black;
-    top: 0px;
-    right: 0px;
-    padding: 10px;
-  }
-.operation-icon{
-    text-decoration: none;
-    color: black;
+/*.overlay {
+    position: relative;
+    display: inline-block;
 }
-.operation-icon:hover,.operation-icon:focus{
-    box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
-    font-size: 20px;
+.overlay:hover .blog-icons{
+    display: block;
+    .operation-icon{
+        color: black;
+    }
 }
+.blog-icons{
+    padding-top: 7px;
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+*/
 /*
 .card-image {
     position: absolute;

@@ -7,6 +7,7 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Category;
 use App\Photo;
 
@@ -85,6 +86,9 @@ class UserPostsController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::where('id',$id)->where('user_id',Auth::user()->id)->first();
+        $categories = Category::pluck('name','id')->all();
+        return view('userposts.edit',compact('post','categories'));
     }
 
     /**
@@ -94,9 +98,29 @@ class UserPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
         //
+        $post = Post::where('id',$id)->where('user_id',Auth::user()->id)->first();
+        $postData = $request->all();
+        if($file = $request->file('photo_id')){
+            if(!is_null($post['photo_id'])){
+                if(\file_exists(public_path().$post->photo->file)){
+                    /*Deleting image from the 'images' folder*/
+                    unlink(public_path().$post->photo->file);
+                }
+                 /*Deleting the photo from the photo table*/
+                 $post->photo->delete();
+            }
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file' => $name]);
+            $postData['photo_id'] = $photo->id;
+        }
+        //Auth::user()->post()->whereId($id)->first()->update($postData);
+        $post->update($postData);
+        Session::flash('post_updated','Post "'.$post->title.'" has been successfully updated');
+        return redirect()->route('userposts.index');
     }
 
     /**
@@ -108,5 +132,17 @@ class UserPostsController extends Controller
     public function destroy($id)
     {
         //
+        $postToBeDeleted = Post::where('id',$id)->where('user_id',Auth::user()->id)->first();
+        if(!is_null($postToBeDeleted['photo_id'])){
+            if(\file_exists(public_path().$postToBeDeleted->photo->file)){
+            /*Deleting image from the 'images' folder*/
+            unlink(public_path().$postToBeDeleted->photo->file);
+            }
+            /*Deleting the photo from the photo table*/
+            $postToBeDeleted->photo->delete();
+        }
+        $postToBeDeleted->delete();
+        Session::flash('post_deleted','Post "'.$postToBeDeleted->title.'" has been successfully deleted.');
+        return redirect()->route('userposts.index');
     }
 }
