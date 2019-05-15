@@ -36,7 +36,7 @@
                                 <div class="card-date">{{ $post->created_at ? $post->created_at->toFormattedDateString() : 'Date Unavailable' }}</div>
                                 <div class="card-author">By {{ $post->user_id ? $post->user->name : 'Anonymous' }}</div>
                             </div>
-                            @if($post->user_id == Auth::user()->id)
+                            @if(Auth::check() && $post->user_id == Auth::user()->id)
                                 <div class="col-md-4 icon-details">
                                     <a title="Edit Post" href="{{ route('userposts.edit',$post->id) }}"><i class="fas fa-edit operation-icon"></i></a>
                                     <a title="Save Post" href="#"><i class="fas fa-bookmark operation-icon"></i></a>
