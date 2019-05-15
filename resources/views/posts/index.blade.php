@@ -21,11 +21,17 @@
         </a>
         @endforeach
     </div>
-        @else
-        <div class="NoDataMessage">
-            <h2><b>No Posts to Show!!</b></h2>
+    <!-- Pagination -->
+    <div class="row">
+        <div class="col">
+            <div class="d-flex align-items-center justify-content-center"> {{ $posts->links() }}</div>
         </div>
-        @endif
+    </div>
+    @else
+    <div class="NoDataMessage">
+        <h2><b>No Posts to Show!!</b></h2>
+    </div>
+    @endif
 </div>
 @endsection
 @section('footer-scripts')

@@ -21,7 +21,7 @@ class UserPostsController extends Controller
     public function index()
     {
         //
-        $posts = Post::where('user_id',Auth::user()->id)->get();
+        $posts = Post::where('user_id',Auth::user()->id)->paginate(12);
         return view('userposts.index',compact('posts'));
     }
 

@@ -101,9 +101,10 @@
             </tbody>
     </table><hr>
     <!-- Pagination links -->
+    <!-- Pagination -->
     <div class="row">
-        <div class="col-md-6 offset-md-5">
-            {{ $posts->links() }}
+        <div class="col">
+            <div class="d-flex align-items-center justify-content-center"> {{ $posts->links() }}</div>
         </div>
     </div>
 @else
