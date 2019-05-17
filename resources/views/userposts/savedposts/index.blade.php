@@ -5,36 +5,12 @@
         <hr>
         <a title="Published posts" href="{{ route('userposts.index') }}"><h3 class="headingTag"><b>My Blog Posts </b></h3></a>
         <h3 class="headingTag"><b> | </b></h3>
-        <a title="Saved posts" href="usersposts/savedposts"><h3 class="headingTag"><b>Saved Posts </b></h3></a>
+        <a title="Saved posts" href="/userposts/savedposts"><h3 class="headingTag"><b>Saved Posts </b></h3></a>
         <hr>
     </div>
-    @if(Session::has('post_created'))
-        <div class="alert alert-dismissible alert-success fade show">
-          {{ session('post_created')}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      @endif
-      @if(Session::has('post_updated'))
-        <div class="alert alert-dismissible alert-success fade show">
-          {{ session('post_updated')}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      @endif
-      @if(Session::has('post_deleted'))
-      <div class="alert alert-dismissible alert-success fade show">
-        {{ session('post_deleted')}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    @endif
-    @if(count($posts) > 0)
+    @if(count($savedPosts) > 0)
     <div class="blog-card-row">
-        @foreach ($posts as $key => $post)
+        @foreach ($savedPosts as $key => $post)
         <a class="blog-redirection-to-single" href="{{ route('blogposts.show',$post->slug) }}">
             <div class="blog-card">
                 <table class="card-container">

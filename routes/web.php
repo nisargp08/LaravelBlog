@@ -23,6 +23,7 @@ Route::get('/', 'PostsController@index');
 /*Dashboard route(Which users gets redirected to after login)*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/blogposts','PostsController');
+
 /*Grouping all the admin routes under 'Admin' middleware*/
 Route::group(['middleware' => 'Admin'],function(){
     /*Dashboard Route*/
@@ -43,9 +44,12 @@ Route::group(['middleware' => 'Admin'],function(){
     Route::delete('/admin/delete/media','AdminMediaController@deleteBulkMedia');
 
 });
-
+/*Authenticated Route - Accessible when user is logged in */
 Route::group(['middleware' => 'auth'],function(){
     Route::post('comment/reply','CommentRepliesController@createReply');
     Route::post('/comment','PostCommentsController@createComment');
     Route::resource('/userposts','UserPostsController');
+    /*User saved posts*/
+    Route::get('/usersposts/{id}/save','UserPostsController@savePost');
+    Route::get('/usersposts/savedposts','UserPostsController@savePostIndex');
 });

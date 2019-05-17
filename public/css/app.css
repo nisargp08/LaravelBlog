@@ -10969,6 +10969,12 @@ a.title-redirect:focus {
   margin-top: 20px;
 }
 
+/*userpotsts.index dropdown option*/
+
+.posts-dropdown-container {
+  display: inline-block;
+}
+
 /*To display blog operations icons like edit,share,delete,favourite*/
 
 /*.overlay {

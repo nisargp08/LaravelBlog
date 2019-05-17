@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Category;
+use App\SavePost;
 use App\Photo;
 
 class UserPostsController extends Controller
@@ -23,6 +24,13 @@ class UserPostsController extends Controller
         //
         $posts = Post::where('user_id',Auth::user()->id)->paginate(12);
         return view('userposts.index',compact('posts'));
+    }
+
+    public function savePostIndex()
+    {
+        //
+        $savedPosts = savePost::where('user_id',Auth::user()->id)->paginate(12);
+        return view('userposts.savedposts.index',compact('savedPosts'));
     }
 
     /**
@@ -143,6 +151,15 @@ class UserPostsController extends Controller
         }
         $postToBeDeleted->delete();
         Session::flash('post_deleted','Post "'.$postToBeDeleted->title.'" has been successfully deleted.');
+        return redirect()->back();
+    }
+
+    /*For saving/bookmarking selected post*/
+    public function savePost($id){
+        $post = Post::findOrFail($id);
+        $userid = Auth::user()->id;
+        savePost::create(['post_id' => $id,'user_id' => $userid]);
+        Session::flash('post_saved','Post "'.$post->title.'" has been successfully saved.');
         return redirect()->back();
     }
 }

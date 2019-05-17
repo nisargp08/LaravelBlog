@@ -14,6 +14,14 @@
       </button>
     </div>
     @endif
+    @if(Session::has('post_saved'))
+    <div class="alert alert-dismissible alert-success fade show">
+      {{ session('post_saved')}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
     @if(count($posts) > 0)
     <div class="blog-card-row">
         @foreach ($posts as $key => $post)
@@ -39,12 +47,12 @@
                             @if(Auth::check() && $post->user_id == Auth::user()->id)
                                 <div class="col-md-4 icon-details">
                                     <a title="Edit Post" href="{{ route('userposts.edit',$post->id) }}"><i class="fas fa-edit operation-icon"></i></a>
-                                    <a title="Save Post" href="#"><i class="fas fa-bookmark operation-icon"></i></a>
+                                    <a title="Save Post" href="/usersposts/{{ $post->id }}/save"><i class="fas fa-bookmark operation-icon"></i></a>
                                     <a title="Delete Post" data-toggle="modal" data-target="#exampleModal<?php echo $key?>"  href="{{ route('userposts.destroy',$post->id) }}"><i class="fas fa-trash operation-icon"></i></a>
                                 </div>
                             @else
                                 <div class="col-md-4 save-icon-details">
-                                    <a title="Save Post" href="#"><i class="fas fa-bookmark operation-icon"></i></a>
+                                    <a title="Save Post" href="/usersposts/{{ $post->id }}/save"><i class="fas fa-bookmark operation-icon"></i></a>
                                 </div>
                             @endif
 
