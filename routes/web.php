@@ -51,5 +51,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('/userposts','UserPostsController');
     /*User saved posts*/
     Route::get('/usersposts/{id}/save','UserPostsController@savePost');
+    Route::get('/usersposts/{id}/unsave','UserPostsController@unsavePost');
     Route::get('/usersposts/savedposts','UserPostsController@savePostIndex');
 });

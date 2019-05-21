@@ -158,8 +158,22 @@ class UserPostsController extends Controller
     public function savePost($id){
         $post = Post::findOrFail($id);
         $userid = Auth::user()->id;
-        savePost::create(['post_id' => $id,'user_id' => $userid]);
+        $savedPost = savePost::where('post_id',$post->id)->where('user_id',$userid)->first();
+        if(!$savedPost){
+            savePost::create(['post_id' => $id,'user_id' => $userid]);
+        }
         Session::flash('post_saved','Post "'.$post->title.'" has been successfully saved.');
+        return redirect()->back();
+    }
+     /*For unsaving selected post*/
+     public function unsavePost($id){
+        $post = Post::findOrFail($id);
+        $userid = Auth::user()->id;
+        $savedPost = savePost::where('post_id',$post->id)->where('user_id',$userid)->first();
+        if($savedPost){
+           $savedPost->delete();
+        }
+        Session::flash('unsaved_post','Post "'.$post->title.'" has been successfully unsaved.');
         return redirect()->back();
     }
 }

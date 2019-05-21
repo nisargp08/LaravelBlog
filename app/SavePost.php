@@ -12,9 +12,9 @@ class SavePost extends Model
         'user_id'
     ];
 
-    /*public function post(){
+    public function post(){
         return $this->belongsTo('App\Post');
-    }*/
+    }
     public function user(){
         return $this->belongToMany('App\User');
     }
