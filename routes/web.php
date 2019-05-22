@@ -21,7 +21,6 @@ Auth::routes();
 /*Index route(Initial route that loads when users comes to the website)*/
 Route::get('/', 'PostsController@index');
 /*Dashboard route(Which users gets redirected to after login)*/
-Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/blogposts','PostsController');
 
 /*Grouping all the admin routes under 'Admin' middleware*/
@@ -53,4 +52,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/usersposts/{id}/save','UserPostsController@savePost');
     Route::get('/usersposts/{id}/unsave','UserPostsController@unsavePost');
     Route::get('/usersposts/savedposts','UserPostsController@savePostIndex');
+    /*User Profile Settings*/
+    Route::resource('user', 'UserProfileController');
 });

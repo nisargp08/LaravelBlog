@@ -71,6 +71,9 @@
                                     @if (Auth::user()->checkRole() == "Admin")
                                     <a class="dropdown-item" href="/admin">Admin Panel</a>
                                     @endif
+                                    <!-- User profile settings -->
+                                    <a class="dropdown-item" href="{{ route('user.index') }}">My Account</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

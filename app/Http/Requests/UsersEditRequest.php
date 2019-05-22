@@ -29,8 +29,8 @@ class UsersEditRequest extends FormRequest
             'name' => 'required|max:30',
             'email' => 'required|email|unique:users,email,'.$userid,
             //'email' => 'required|email|unique:users,email'.$this->id, (for edit profile so it ignores curreent email)
-            'role_id' => 'required|integer',
-            'is_active' => 'required|boolean',
+            //'role_id' => 'required|integer',
+            //'is_active' => 'required|boolean',
             'photo_id' => 'image|max:2048'
         ];
     }
